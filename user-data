@@ -1,0 +1,77 @@
+#cloud-config
+password: changeme
+chpasswd: { expire: false }
+ssh_pwauth: false
+disable_root: false
+
+ssh_authorized_keys:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPUwTXh230OaL/SBqfVbw60Q+UhMskZuUBg8Nv/YOzi/ stasian@mbp15-hardcore.lan
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOVGCFEbeH+P1vk1j8A3kLbQCxPrldn6ky/qqCPwo1oU stasian@mbp13-hardcore.wifi-lan
+
+timezone: Asia/Novosibirsk
+
+yum_repos:
+    epel:
+        baseurl: https://dl.fedoraproject.org/pub/epel/7/$basearch
+        enabled: true
+        failovermethod: priority
+        gpgcheck: true
+        gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+        name: Extra Packages for Enterprise Linux 7 - $basearch
+    docker-ce-stable:
+        baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+        enabled: true
+        failovermethod: priority
+        gpgcheck: true
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        name: Docker CE Stable - $basearch
+
+package_upgrade: true
+packages:
+  - bash-completion
+  - bind-utils
+  - bzip2
+  - conntrack-tools
+  - docker-ce
+  - docker-compose
+  - epel-release
+  - gcc
+  - git
+  - htop
+  - iftop
+  - iotop
+  - iperf
+  - iptraf-ng
+  - jwhois
+  - kernel-devel
+  - lshw
+  - lsof
+  - mc
+  - mlocate
+  - mtr
+  - ncdu
+  - ngrep
+  - nload
+  - nmap
+  - nmap-ncat
+  - openssh-clients
+  - patch
+  - psmisc
+  - pv
+  - rpmconf
+  - rsync
+  - screen
+  - socat
+  - strace
+  - sysstat
+  - tcpdump
+  - telnet
+  - unzip
+  - uuid
+  - vim-enhanced
+  - wget
+  - yum-utils
+
+runcmd:
+  - 'systemctl enable docker.service'
+  - 'needs-restarting -r || reboot'

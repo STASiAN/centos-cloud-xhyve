@@ -1,0 +1,4 @@
+*.raw
+*.raw.tar.gz
+*.iso
+sha256sum.txt
