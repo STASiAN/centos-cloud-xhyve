@@ -1,4 +1,5 @@
 #!/bin/sh
+brew list | grep cdrtools || brew install cdrtools
 curl -s https://cloud.centos.org/centos/7/images/sha256sum.txt -O
 VER=$(tail -n1 sha256sum.txt | cut -d ' ' -f3 | cut -d . -f 1)
 IMG=$VER.raw
@@ -20,4 +21,4 @@ IMG_CD="-s 3:0,ahci-cd,$ISO"
 IMG_HDD="-s 4,virtio-blk,$IMG"
 UUID="-U deadbeef-dead-dead-dead-deaddeafbeef"
 
-./xhyve $ACPI $MEM $SMP $PCI_DEV $LPC_DEV $NET $IMG_CD $IMG_HDD $UUID -f kexec,$KERNEL,$INITRD,"$CMDLINE"
+./xhyve -H $ACPI $MEM $SMP $PCI_DEV $LPC_DEV $NET $IMG_CD $IMG_HDD $UUID -f kexec,$KERNEL,$INITRD,"$CMDLINE"
