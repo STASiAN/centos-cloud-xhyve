@@ -18,5 +18,6 @@ PCI_DEV="-s 0:0,hostbridge -s 31,lpc"
 LPC_DEV="-l com1,stdio"
 IMG_CD="-s 3:0,ahci-cd,$ISO"
 IMG_HDD="-s 4,virtio-blk,$IMG"
+UUID="-U deadbeef-dead-dead-dead-deaddeafbeef"
 
 ./xhyve $ACPI $MEM $SMP $PCI_DEV $LPC_DEV $NET $IMG_CD $IMG_HDD $UUID -f kexec,$KERNEL,$INITRD,"$CMDLINE"
