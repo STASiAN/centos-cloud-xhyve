@@ -73,5 +73,6 @@ packages:
   - yum-utils
 
 runcmd:
-  - 'systemctl enable docker.service'
+  - 'systemctl enable docker'
+  - 'systemctl start docker'
   - 'needs-restarting -r || reboot'
