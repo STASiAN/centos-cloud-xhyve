@@ -74,5 +74,4 @@ packages:
 
 runcmd:
   - 'systemctl enable docker'
-  - 'systemctl start docker'
   - 'needs-restarting -r || reboot'
