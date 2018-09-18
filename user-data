@@ -18,13 +18,6 @@ yum_repos:
         gpgcheck: true
         gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
         name: Extra Packages for Enterprise Linux 7 - $basearch
-    docker-ce-stable:
-        baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
-        enabled: true
-        failovermethod: priority
-        gpgcheck: true
-        gpgkey: https://download.docker.com/linux/centos/gpg
-        name: Docker CE Stable - $basearch
 
 package_upgrade: true
 packages:
@@ -32,8 +25,6 @@ packages:
   - bind-utils
   - bzip2
   - conntrack-tools
-  - docker-ce
-  - docker-compose
   - epel-release
   - gcc
   - git
@@ -73,5 +64,4 @@ packages:
   - yum-utils
 
 runcmd:
-  - 'systemctl enable docker'
   - 'needs-restarting -r || reboot'
