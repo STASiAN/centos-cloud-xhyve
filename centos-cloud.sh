@@ -7,8 +7,8 @@ URL=https://cloud.centos.org/centos/7/images
 wget -c $URL/$IMG.tar.gz
 shasum sha256sum.txt && if [ ! -f $VER.raw ]; then tar xvzf $VER.raw.tar.gz; fi
 mkisofs -output $VER-cidata.iso -volid cidata -joliet -rock user-data meta-data 2> /dev/null
-KERNEL=$(ls -1 | grep vmlinuz)
-INITRD=$(ls -1 | grep initramfs) 
+KERNEL=$(ls -1 | grep vmlinuz | tail -n 1 )
+INITRD=$(ls -1 | grep initramfs | tail -n 1)
 ISO="$VER-cidata.iso"
 CMDLINE="earlyprintk=serial console=ttyS0 root=/dev/vda1 ro crashkernel=auto"
 MEM="-m 4G"
