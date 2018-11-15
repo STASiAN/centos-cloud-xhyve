@@ -1,12 +1,11 @@
 #!/bin/sh
-brew list | grep cdrtools > /dev/null || brew install cdrtools
 curl -s https://cloud.centos.org/centos/7/images/sha256sum.txt -O
 VER=$(tail -n1 sha256sum.txt | cut -d ' ' -f3 | cut -d . -f 1)
-IMG=$VER.raw
 URL=https://cloud.centos.org/centos/7/images
-wget -c $URL/$IMG.tar.gz
-shasum sha256sum.txt && if [ ! -f $VER.raw ]; then tar xvzf $VER.raw.tar.gz; fi
-mkisofs -output $VER-cidata.iso -volid cidata -joliet -rock user-data meta-data 2> /dev/null
+wget -c $URL/$VER.raw.tar.gz
+shasum sha256sum.txt && if [ ! -f *.raw ]; then tar xvzf $VER.raw.tar.gz; fi
+hdiutil makehybrid -hfs -joliet -iso -default-volume-name cidata cidata -o $VER-cidata.iso 2> /dev/null
+IMG=$(ls -1 | grep raw$)
 KERNEL=$(ls -1 | grep vmlinuz | tail -n 1 )
 INITRD=$(ls -1 | grep initramfs | tail -n 1)
 ISO="$VER-cidata.iso"
