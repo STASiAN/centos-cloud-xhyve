@@ -6,7 +6,7 @@ disable_root: false
 
 ssh_authorized_keys:
   - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPUwTXh230OaL/SBqfVbw60Q+UhMskZuUBg8Nv/YOzi/ stasian@mbp15-hardcore.lan
-  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOVGCFEbeH+P1vk1j8A3kLbQCxPrldn6ky/qqCPwo1oU stasian@mbp13-hardcore.wifi-lan
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoVgNOCfImHNaRmZMLXVUSJ86WSlqav/ahxirc8bE7J stasian@mbp15-hardcore
 
 timezone: Asia/Novosibirsk
 
